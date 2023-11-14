@@ -5,9 +5,15 @@ CSI 3500's Team 3's project known as Voice-to-Code. We're building a voice recog
 This Python script utilizes the SpeechRecognition library to convert speech from a microphone into text using Google's speech recognition API. The recognized text is saved to "output.txt" file.
 
 ## Prerequisites
-Make sure you have the required library installed. You can install it using:
+Make sure you have the required library installed. You can install it using the following commands:
+Windows:
 ```bash
 pip install SpeechRecognition
+
+MacOS:
+pip3 install speechrecognition
+brew install python3-pyaudio
+pip3 install pyaudio
 
 #Usage
 Step 1. Run the script.
