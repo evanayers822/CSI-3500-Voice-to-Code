@@ -9,15 +9,25 @@ Make sure you have the required library installed. You can install it using the 
 Windows:
 ```bash
 pip install SpeechRecognition
+pip install pyaudio
 
 MacOS:
 pip3 install speechrecognition
 brew install python3-pyaudio
 pip3 install pyaudio
 
-#Usage
-Step 1. Run the script.
-Step 2. The script will continuously listen to the microphone input.
-Step 3. When speech is detected, it will use Google's speech recognition to convert it to text.
-Step 4.The recognized text will be appended to the "output.txt" file.
-Step 5. The process continues in a loop.
+# VoiceToCode GUI
+This is a basic graphical user interface (GUI) for speech recognition using Python's tkinter library and the speech_recognition module.
+
+Features
+Start Recording: Initiates the speech recognition process using your microphone.
+Stop Recording: Stops the ongoing recording and speech recognition.
+The recognized text will be displayed in a scrolled text widget in the GUI.
+
+# How it Works
+The GUI is built using the tkinter library.
+The speech_recognition module is used for speech recognition.
+The application captures audio from the microphone, adjusts for ambient noise, and uses Google's speech recognition to convert the audio to text.
+The recognized text is displayed in a scrolled text widget.
+The GUI provides buttons to start and stop the recording process.
+
