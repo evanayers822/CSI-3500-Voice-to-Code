@@ -25,11 +25,11 @@ def record_text():
                 return MyText
 
         except sr.RequestError as e:
-            print("could not request results; {0}".format(e))
+            print("Could not request results; {0}".format(e))
 
         except sr.UnknownValueError:
             print("unknown error occurred")
-    return
+            return ""  # Return an empty string in case of an unknown value error
 
 
 def output_text(text):
@@ -40,12 +40,8 @@ def output_text(text):
     return
 
 
-def record_text():
-    pass
-
-
 while (1):
     text = record_text()
     output_text(text)
 
-    print("wrote text")
+    print("Wrote text")
