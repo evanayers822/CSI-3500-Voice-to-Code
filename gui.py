@@ -43,7 +43,14 @@ class VoiceToCode:
                     r.adjust_for_ambient_noise(source, duration=0.2)
                     audio = r.listen(source)
                     text = r.recognize_google(audio)
-                    self.text_area.insert(tk.END, text + '\n')
+                    if text == 'start print':
+                        self.text_area.insert(tk.END, "print(\"")
+                    elif text == 'stop print':
+                        self.text_area.insert(tk.END, "\")")
+                    elif text == 'new line':
+                        self.text_area.insert(tk.END, "\n#\n")
+                    else:
+                        self.text_area.insert(tk.END, text + " ")
             except sr.UnknownValueError:
                 print("Could not understand audio")
             except sr.RequestError as e:
