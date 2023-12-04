@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import scrolledtext, messagebox
 import threading
 import speech_recognition as sr
 
@@ -16,6 +16,9 @@ class VoiceToCode:
 
         self.stop_button = tk.Button(master, text="Stop Recording", command=self.stop_recording, state=tk.DISABLED)
         self.stop_button.pack(pady=10)
+
+        self.info_button = tk.Button(master, text="Info", command=self.display_info)
+        self.info_button.pack(pady=10)
 
         self.is_recording = False
         self.recording_thread = None
@@ -57,6 +60,13 @@ class VoiceToCode:
                 print("Could not understand audio")
             except sr.RequestError as e:
                 print(f"Could not request results; {e}")
+            
+    def display_info(self):
+        info_text = "Say 'start print' to insert a print statement in the text area\n"\
+                    "Say 'stop print' to stop the inserted print statement\n"\
+                    "Say 'new line' to go to a new line\n"\
+                    "Say 'show shortcuts' to see the avaliable voice shortcuts"
+        tk.messagebox.showinfo("Command Information", info_text)
 
 if __name__ == "__main__":
     root = tk.Tk()
