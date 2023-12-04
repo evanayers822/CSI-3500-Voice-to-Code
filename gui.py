@@ -49,6 +49,8 @@ class VoiceToCode:
                         self.text_area.insert(tk.END, "\")")
                     elif text == 'new line':
                         self.text_area.insert(tk.END, "\n#\n")
+                    elif text == 'show shortcuts':
+                        self.text_area.insert(tk.END, "start print, stop print, new line, show shortcuts\n")
                     else:
                         self.text_area.insert(tk.END, text + " ")
             except sr.UnknownValueError:
