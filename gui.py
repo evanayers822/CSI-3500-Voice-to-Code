@@ -25,6 +25,8 @@ class VoiceToCode:
         self.is_recording = False
         self.recording_thread = None
 
+        self.stop_requested = False
+
     def start_recording(self):
         if not self.is_recording:
             self.is_recording = True
@@ -36,9 +38,9 @@ class VoiceToCode:
     def stop_recording(self):
         if self.is_recording:
             self.is_recording = False
+            self.stop_requested = True
             self.record_button.config(state=tk.NORMAL)
             self.stop_button.config(state=tk.DISABLED)
-            self.recording_thread.join()
 
     def save_text(self, file):
         f = open("./files/" + file, 'r+')
@@ -58,6 +60,8 @@ class VoiceToCode:
                 with sr.Microphone() as source:
                     r.adjust_for_ambient_noise(source, duration=0.2)
                     audio = r.listen(source)
+                    if not self.is_recording or self.stop_requested:
+                        break
                     text = r.recognize_google(audio)
                     print(">" + text)
                     if text == 'start print':
@@ -120,6 +124,9 @@ class VoiceToCode:
                 print("Could not understand audio")
             except sr.RequestError as e:
                 print(f"Could not request results; {e}")
+            finally:
+                self.stop_requested = False
+                print("Recording stopped.")
             
     def display_info(self):
         info_text = "Say 'start print' to insert a print statement in the text area\n"\
